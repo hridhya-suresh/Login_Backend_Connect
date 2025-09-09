@@ -1,0 +1,104 @@
+<body>
+  <div class="card">
+    <div class="btn-group">
+      <button
+        class="btn"
+        [class.active]="activeForm === 'Sign-In'"
+        data-form="Sign-In"
+        (click)="loginForm()"
+      >
+        Sign In
+      </button>
+      <button
+        class="btn"
+        [class.active]="activeForm === 'Sign-Up'"
+        data-form="Sign-Up"
+        (click)="registration()"
+      >
+        Sign Up
+      </button>
+    </div>
+    <div class="form-container">
+      <!-- Add (ngSubmit) and prevent default form submission -->
+      <form
+        *ngIf="!isRegisterModalVisible"
+        (ngSubmit)="login()"
+        class="form active"
+        id="Sign-In"
+        #loginForm="ngForm"
+      >
+        <h2>Sign In</h2>
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input
+            type="email"
+            [(ngModel)]="username"
+            name="username"
+            id="username"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            id="password"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <!-- Change type to "button" OR keep "submit" but remove (click) -->
+          <input type="submit" class="btn" value="Sign In" />
+        </div>
+      </form>
+      <!-- signup form remains the same -->
+
+      <form
+        *ngIf="isRegisterModalVisible"
+        (ngSubmit)="register()"
+        class="form active"
+        id="Sign-Up"
+        #RegisterForm="ngForm"
+      >
+        <h2>Sign Up</h2>
+        <div class="input-group">
+          <label for="firstname">Name</label>
+          <input
+            type="text"
+            name="firstname"
+            [(ngModel)]="username"
+            id="firstname"
+          />
+        </div>
+        <!-- <div class="input-group">
+          <label for="lastname">Last Name</label>
+          <input type="text" name="lastname" id="lastname" />
+        </div> -->
+        <!-- <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required />
+        </div> -->
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            [(ngModel)]="password"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <input
+            type="submit"
+            class="btn"
+            style="background-color: #f24c27"
+            value="Sign Up"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
